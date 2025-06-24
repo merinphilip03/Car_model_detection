@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Model Classification</title>
+</head>
+<body>
+    <h1>Upload a Car Image</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Classify</button>
+    </form>
+
+    {% if result %}
+        <h2>Prediction: {{ result }} ({{ confidence }}%)</h2>
+        <img src="{{ img_url }}" width="300" />
+    {% endif %}
+</body>
+</html>
