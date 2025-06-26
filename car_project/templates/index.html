@@ -11,9 +11,15 @@
         <button type="submit">Classify</button>
     </form>
 
-    {% if result %}
-        <h2>Prediction: {{ result }} ({{ confidence }}%)</h2>
+    {% if results %}
+        <h2>Prediction: {{ results }} ({{ confidence }}%)</h2>
         <img src="{{ img_url }}" width="300" />
+    {% endif %}
+    {% if number %}
+        <h2>License Plate Number:</h2>
+        <h1>{{ number }}</h1>
+        <h3>Cropped License Plate:</h3>
+        <img src="/media/cropped_plate.jpg" alt="Cropped License Plate" width="200">
     {% endif %}
 </body>
 </html>
