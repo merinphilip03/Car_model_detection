@@ -10,7 +10,7 @@ import re
 import easyocr
 import numpy as np
 
-model = YOLO(os.path.join(settings.BASE_DIR, 'bestest.pt'))
+model = YOLO(os.path.join(settings.BASE_DIR, 'best.pt'))
 pipe = pipeline("object-detection",
                 model="nickmuchi/yolos-small-finetuned-license-plate-detection")
 reader = easyocr.Reader(['en'])
