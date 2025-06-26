@@ -7,7 +7,8 @@ def download_car_image(make_model, num=20):
 if __name__ == '__main__':
     car_names = ["Hyundai Creta 2025 exterior","Hyundai Creta 2024 exterior", 
                  "Maruti Swift 2025 exterior", "Maruti Swift 2024 exterior",
-                 "Mahindra Thar 2025 exterior","Mahindra Thar 2024 exterior"]
+                 "Mahindra Thar 2025 exterior","Mahindra Thar 2024 exterior",
+                 "Jeep Wrangler 2025 exterior","Jeep Wrangler 2024 exterior"]
 
     for car in car_names:
         download_car_image(car, 20)
