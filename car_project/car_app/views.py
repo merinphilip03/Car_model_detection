@@ -11,8 +11,7 @@ import easyocr
 import numpy as np
 
 model = YOLO(os.path.join(settings.BASE_DIR, 'best.pt'))
-pipe = pipeline("object-detection",
-                model="nickmuchi/yolos-small-finetuned-license-plate-detection")
+pipe = pipeline("object-detection",model="nickmuchi/yolos-small-finetuned-license-plate-detection")
 reader = easyocr.Reader(['en'])
 
 def preprocess_text(text):
@@ -65,6 +64,7 @@ def classify_cars(request):
     confidence = None
     img_url = None
     number = None
+    show_plate = False
 
     if request.method == 'POST':
         form = CarImageForm(request.POST, request.FILES)
@@ -92,7 +92,7 @@ def classify_cars(request):
                 cropped_plate_path = os.path.join(settings.MEDIA_ROOT, "cropped_plate.jpg")
                 enhanced_img.save(cropped_plate_path)
 
-                crop_np = np.array(enhanced_img)
+                crop_np = np.array(crop_img)
                 ocr_results = reader.readtext(crop_np, detail=0)
 
                 filtered = [preprocess_text(txt) for txt in ocr_results
@@ -101,6 +101,7 @@ def classify_cars(request):
                 if filtered:
                     raw_number = filtered[0]
                     number = postprocess_plate(raw_number)
+                    show_plate = True
                 else:
                     number = "No valid plate number detected."
             else:
@@ -113,5 +114,6 @@ def classify_cars(request):
         'results': results,
         'confidence': confidence,
         'img_url': img_url,
-        'number': number
+        'number': number,
+        'show_plate': show_plate
     })
