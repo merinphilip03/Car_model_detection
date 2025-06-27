@@ -92,8 +92,8 @@ def classify_cars(request):
                 cropped_plate_path = os.path.join(settings.MEDIA_ROOT, "cropped_plate.jpg")
                 enhanced_img.save(cropped_plate_path)
 
-                crop_np = np.array(crop_img)
-                ocr_results = reader.readtext(crop_np, detail=0)
+                enhanced_np = np.array(enhanced_img)
+                ocr_results = reader.readtext(enhanced_np, detail=0)
 
                 filtered = [preprocess_text(txt) for txt in ocr_results
                             if "IND" not in txt.upper() and len(preprocess_text(txt)) >= 8]
