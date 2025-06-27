@@ -1,25 +1,31 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>Car Model Classification</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Upload a Car Image</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Classify</button>
-    </form>
+    <div class="container">
+        <h1>Upload a Car Image</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Classify</button>
+        </form>
 
-    {% if results %}
-        <h2>Prediction: {{ results }} ({{ confidence }}%)</h2>
-        <img src="{{ img_url }}" width="300" />
-    {% endif %}
-    {% if number %}
-        <h2>License Plate Number:</h2>
-        <h1>{{ number }}</h1>
-        <h3>Cropped License Plate:</h3>
-        <img src="/media/cropped_plate.jpg" alt="Cropped License Plate" width="200">
-    {% endif %}
+        {% if results %}
+            <h2>Prediction: {{ results }} ({{ confidence }}%)</h2>
+            <img src="{{ img_url }}" width="300" />
+        {% endif %}
+        {% if number %}
+            <h2>License Plate Number:</h2>
+            <h1>{{ number }}</h1>
+            {% if  show_plate %}
+                <h3>Cropped License Plate:</h3>
+                <img src="/media/cropped_plate.jpg" alt="Cropped License Plate" width="200">
+            {% endif %}
+        {% endif %}
+    </div>
 </body>
 </html>
