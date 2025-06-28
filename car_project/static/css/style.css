@@ -1,3 +1,38 @@
 .container {
-    margin-left: 190px;
+    text-align: center;
+    margin: 50px auto;
+    max-width: 1000px;
+    background-color: rgb(231, 214, 191);
+    border-radius: 6px;
+    padding: 30px;
+    box-shadow: 0 25px 20px gray;
+}
+body{
+    background-color: whitesmoke;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+input[type="file"]{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 2px solid rgb(123, 121, 121);
+    border-radius: 6px;
+    font-size: 18px;
+    padding-left: 10px;
+}
+button{
+    background-color: rgb(153, 134, 108);
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    
+}
+button:hover{
+    background-color: rgb(193, 172, 143);
 }
